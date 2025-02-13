@@ -2,7 +2,11 @@ package com.example.services.map;
 import java.util.Set;
 import com.example.model.Owner;
 import com.example.services.OwnerService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
+@Service
+@Primary
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     @Override
     public Set<Owner> findAll() {

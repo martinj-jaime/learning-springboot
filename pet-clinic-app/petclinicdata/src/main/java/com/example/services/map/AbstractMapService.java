@@ -1,4 +1,6 @@
 package com.example.services.map;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

@@ -3,6 +3,8 @@ package com.example.model;
 public class Speciality extends BaseEntity {
     private String description;
 
+    public Speciality() {}
+
     public Speciality(String description) {
         this.description = description;
     }

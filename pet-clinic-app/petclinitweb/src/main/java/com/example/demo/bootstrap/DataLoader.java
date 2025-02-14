@@ -1,13 +1,15 @@
 package com.example.demo.bootstrap;
 
-import com.example.model.Owner;
-import com.example.model.Vet;
-import com.example.services.OwnerService;
-import com.example.services.PetService;
-import com.example.services.VetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import com.example.model.Owner;
+import com.example.model.PetType;
+import com.example.model.Vet;
+import com.example.services.OwnerService;
+import com.example.services.PetService;
+import com.example.services.PetTypeService;
+import com.example.services.VetService;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -15,16 +17,28 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetService petService;
+    private final PetTypeService petTypeService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petService = petService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        PetType savedDogPetType = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+        PetType savedCatPetType = petTypeService.save(cat);
+
+
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");

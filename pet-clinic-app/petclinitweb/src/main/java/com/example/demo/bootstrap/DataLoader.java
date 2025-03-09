@@ -1,6 +1,8 @@
 package com.example.demo.bootstrap;
 
 import java.time.LocalDate;
+
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,13 +18,18 @@ public class DataLoader implements CommandLineRunner {
     private final PetTypeService petTypeService;
     private final SpecialityService specialitiesService;
 
+    private final VisitService visitService;
+
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService, PetTypeService petTypeService, SpecialityService specialitiesService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService,
+                      PetTypeService petTypeService, SpecialityService specialitiesService,
+                      VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petService = petService;
         this.petTypeService = petTypeService;
         this.specialitiesService = specialitiesService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -85,6 +92,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionaCat);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionaCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Castramiento");
+
+        visitService.save(catVisit);
 
         System.out.println("Loaded Owners....");
 

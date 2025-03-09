@@ -5,9 +5,11 @@ import com.example.repositories.OwnerRepository;
 import com.example.repositories.PetRepository;
 import com.example.repositories.PetTypeRepository;
 import com.example.services.OwnerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -19,7 +21,11 @@ public class OwnerSDJpaService implements OwnerService {
     private final PetRepository petRepository;
     private final PetTypeRepository petTypeRepository;
 
-    public OwnerSDJpaService(OwnerRepository ownerRepository, PetRepository petRepository, PetTypeRepository petTypeRepository) {
+    public OwnerSDJpaService(
+            OwnerRepository ownerRepository,
+            PetRepository petRepository,
+            PetTypeRepository petTypeRepository
+    ) {
         this.ownerRepository = ownerRepository;
         this.petRepository = petRepository;
         this.petTypeRepository = petTypeRepository;

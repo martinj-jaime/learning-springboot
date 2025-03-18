@@ -1,5 +1,6 @@
 package com.example.services.map;
 
+import java.util.List;
 import java.util.Set;
 
 import com.example.model.Owner;
@@ -58,6 +59,11 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     }
     @Override
     public Owner findByLastName(String lastName) {
+        return null;
+    }
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        // TODO implement
         return null;
     }
 }

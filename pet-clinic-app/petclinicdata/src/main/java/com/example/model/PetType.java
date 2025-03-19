@@ -15,6 +15,16 @@ public class PetType extends BaseEntity {
 
     public PetType() {}
 
+    public PetType(Long id) {
+        super(id);
+    }
+
+    @Builder
+    public PetType(Long id, String name) {
+        super(id);
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return this.name;

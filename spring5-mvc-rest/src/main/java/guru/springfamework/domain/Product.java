@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.File;
 
 @Data
 @Entity
@@ -16,13 +17,15 @@ public class Product {
     private Long id;
     private String name;
     private Double price;
+    private File image;
 
     public Product() {}
 
     @Builder
-    public Product(Long id, String name, Double price) {
+    public Product(Long id, String name, Double price, File image) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.image = image;
     }
 }

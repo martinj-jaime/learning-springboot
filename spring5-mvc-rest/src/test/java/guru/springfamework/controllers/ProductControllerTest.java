@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +38,14 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void apiGetProducts() {
-        List<ProductDTO> products = productController.apiGetProducts();
-        Assert.assertEquals(2, products.size());
+    public void listProducts() {
+        ResponseEntity<List<ProductDTO>> response = productController.listProducts();
+        Assert.assertEquals(2, response.getBody().size());
     }
 
     @Test
-    public void apiGetProduct() {
-        ProductDTO product = productController.apiGetProduct(1L);
-        Assert.assertEquals("apple", product.getName());
+    public void listProduct() {
+        ResponseEntity<ProductDTO> response = productController.listProduct(1L);
+        Assert.assertEquals("apple", response.getBody().getName());
     }
 }

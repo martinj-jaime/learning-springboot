@@ -5,6 +5,8 @@ import guru.springfamework.services.ProductService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+
 @Component
 public class Bootstrap implements CommandLineRunner {
 
@@ -19,8 +21,10 @@ public class Bootstrap implements CommandLineRunner {
     }
 
     private void loadData() {
+        File grapesImage = new File("../resources/images/grapes.jpg");
+
         // #1 Product
-        Product lemonFruitProduct = Product.builder().name("Limón").price(15.33).build();
+        Product lemonFruitProduct = Product.builder().name("Limón").price(15.33).image(grapesImage).build();
         Product savedLemonFruitProduct = productService.save(lemonFruitProduct);
 
         // #2 Product

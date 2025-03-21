@@ -9,6 +9,8 @@ public class ProductDTO {
     private String name;
     private String price;
 
+    public ProductDTO() {}
+
     @Builder
     public ProductDTO(Long productId, String name, String price) {
         this.productId = productId;

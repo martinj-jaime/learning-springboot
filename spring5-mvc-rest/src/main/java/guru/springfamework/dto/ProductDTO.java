@@ -4,9 +4,15 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class ProductDTO {
-    private Long id;
+    private Long productId;
     private String name;
     private String price;
+
+    @Builder
+    public ProductDTO(Long productId, String name, String price) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+    }
 }

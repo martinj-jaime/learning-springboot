@@ -5,6 +5,7 @@ import guru.springfamework.dto.ProductDTO;
 import guru.springfamework.mapper.ProductMapper;
 import guru.springfamework.services.ProductService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,8 +62,8 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/{id}/image")
-    public File listImage(@PathVariable Long id) {
+    @GetMapping(value = "/{id}/image", produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] listImage(@PathVariable Long id) {
         Optional<Product> product = productService.findById(id);
         if(product.isPresent()) {
             return product.get().getImage();

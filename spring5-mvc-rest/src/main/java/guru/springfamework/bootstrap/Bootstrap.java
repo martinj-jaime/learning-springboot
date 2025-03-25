@@ -14,8 +14,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Component
 public class Bootstrap implements CommandLineRunner {
@@ -41,7 +44,7 @@ public class Bootstrap implements CommandLineRunner {
 
     private void loadData() {
         this.loadCustomers();
-        this.loadVendors();
+        // this.loadVendors();
         this.loadOrders();
 
         // TODO: Ver como se puede refactorizar
@@ -63,6 +66,16 @@ public class Bootstrap implements CommandLineRunner {
         // #2 Product
         Product appleFruitProduct = Product.builder().name("Manzana").price(30d).build();
         Product savedAppleFruitProduct = productService.save(appleFruitProduct);
+
+
+        //
+
+        Vendor vendor = Vendor.builder().name("Exotics Fruit Lair Ltd.")
+                .products(Arrays.asList(savedAppleFruitProduct, savedLemonFruitProduct)).build();
+        Vendor savedVendor = vendorService.save(vendor);
+
+        Vendor vendor2 = Vendor.builder().name("Max Obsthof GmbH").build();
+        Vendor savedVendor2 = vendorService.save(vendor2);
 
     }
 

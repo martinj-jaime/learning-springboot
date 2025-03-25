@@ -1,5 +1,6 @@
 package guru.springfamework.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,4 +16,13 @@ public class Customer {
     private Long id;
     private String firstName;
     private String lastName;
+
+    public Customer() { }
+
+    @Builder
+    public Customer(Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

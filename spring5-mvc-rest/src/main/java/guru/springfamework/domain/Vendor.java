@@ -1,5 +1,6 @@
 package guru.springfamework.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -14,4 +15,12 @@ public class Vendor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+    public Vendor() { }
+
+    @Builder
+    public Vendor(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

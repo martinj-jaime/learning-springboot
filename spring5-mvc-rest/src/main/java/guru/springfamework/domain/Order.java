@@ -1,5 +1,6 @@
 package guru.springfamework.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,4 +15,14 @@ public class Order {
     private String state;
     private Long customer;
     private Double total;
+
+    public Order() { }
+
+    @Builder
+    public Order(Long id, String state, Long customer, Double total) {
+        this.id = id;
+        this.state = state;
+        this.customer = customer;
+        this.total = total;
+    }
 }

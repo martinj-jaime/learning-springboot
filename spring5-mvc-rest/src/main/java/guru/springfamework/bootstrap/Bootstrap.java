@@ -14,10 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 @Component
@@ -43,9 +41,9 @@ public class Bootstrap implements CommandLineRunner {
     }
 
     private void loadData() {
-        this.loadCustomers();
+        // this.loadCustomers();
         // this.loadVendors();
-        this.loadOrders();
+        // this.loadOrders();
 
         // TODO: Ver como se puede refactorizar
         byte[] imageBytes = null;
@@ -67,16 +65,30 @@ public class Bootstrap implements CommandLineRunner {
         Product appleFruitProduct = Product.builder().name("Manzana").price(30d).build();
         Product savedAppleFruitProduct = productService.save(appleFruitProduct);
 
+        // #1 Customer
+        Customer customer1 = Customer.builder().firstName("Helen").lastName("Andrus").build();
+        Customer savedCustomer = customerService.save(customer1);
 
-        //
+        // #2 Customer
+        Customer customer2 = Customer.builder().firstName("Larry").lastName("Lawson").build();
+        Customer savedCustomer2 = customerService.save(customer2);
 
+        // #1 Vendor
         Vendor vendor = Vendor.builder().name("Exotics Fruit Lair Ltd.")
                 .products(Arrays.asList(savedAppleFruitProduct, savedLemonFruitProduct)).build();
         Vendor savedVendor = vendorService.save(vendor);
 
+        // #2 Vendor
         Vendor vendor2 = Vendor.builder().name("Max Obsthof GmbH").build();
         Vendor savedVendor2 = vendorService.save(vendor2);
 
+        // #1 Order
+        Order order = Order.builder().state("CREATED").customer(savedCustomer).build();
+        Order savedOrder = orderService.save(order);
+
+        // #2 Order
+        Order order2 = Order.builder().state("CREATED").customer(savedCustomer2).build();
+        Order savedOrder2 = orderService.save(order2);
     }
 
     private void loadProducts() {  }
@@ -90,8 +102,8 @@ public class Bootstrap implements CommandLineRunner {
     }
 
     private void loadOrders() {
-        Order order = Order.builder().state("CREATED").customer(1L).build();
-        Order savedOrder = orderService.save(order);
+//        Order order = Order.builder().state("CREATED").customer(saved).build();
+//        Order savedOrder = orderService.save(order);
     }
 
     private void loadVendors() {

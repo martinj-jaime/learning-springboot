@@ -3,19 +3,27 @@ package guru.springfamework.domain;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "customer_id")
     private Long id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @OneToMany(mappedBy = "customer")
+    List<Order> orders = new ArrayList<>();
 
     public Customer() { }
 

@@ -6,23 +6,31 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Entity
-@Table(name = "order_table")
+@Entity(name = "orders_table")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    // TODO manage as enum
+    @Column(name = "state")
     private String state;
-    private Long customer;
-    private Double total;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    // TODO relationship
+    @Column(name = "product_id")
+    private Long product;
 
     public Order() { }
 
     @Builder
-    public Order(Long id, String state, Long customer, Double total) {
+    public Order(Long id, String state, Customer customer) {
         this.id = id;
         this.state = state;
         this.customer = customer;
-        this.total = total;
     }
 }
